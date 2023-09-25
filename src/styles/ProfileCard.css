@@ -8,6 +8,7 @@ body {
   display: flex;
 
   min-height: 100vh;
+  background: #fff;
 
   background-repeat: no-repeat, no-repeat;
   background-position: right 48vw bottom 40vh, left 45vw top 44vh;
@@ -20,9 +21,9 @@ body {
 
 .wrapper {
   position: relative;
-  max-width: 420px;
+  max-width: 520px;
   background-color: #fff;
-  border-radius: 15px;
+
   overflow: hidden;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
 }
@@ -31,16 +32,36 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  height: 200px; /* Set the desired height for the background image */
+  height: 250px; /* Set the desired height for the background image */
 }
 
-.content img {
-  width: 150px;
-  height: 150px;
+.profile-picture-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.profile-picture {
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
-  border: 4px solid #fff;
+  border: 5px solid #fff;
   margin-top: -85px;
   margin-bottom: 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.business-logo {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  background-color: #fff;
+  position: absolute;
+  bottom: 60px;
+  right: 5px;
+  transform: translate(50%, 50%);
+  z-index: 1;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .content h2 {
@@ -51,6 +72,12 @@ body {
   align-items: center;
 }
 
+.icon {
+  display: inline; /* Display the icon inline */
+  vertical-align: middle;
+  font-size: 1.8rem; /* Adjust the spacing between text and icon */
+}
+
 .content h2 span {
   color: hsl(227, 10%, 46%);
   font-weight: 400;
@@ -58,8 +85,8 @@ body {
 
 .content p {
   color: hsl(229, 23%, 23%);
-  font-size: 1rem;
-  font-weight: 700;
+  font-size: 1.2rem;
+  font-weight: 500;
 }
 .content span {
   top: 20px;
@@ -71,13 +98,40 @@ body {
   margin-left: 5px;
 }
 
+.button {
+  margin-top: 25px;
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  border-radius: 500px;
+  transition-property: background-color, border-color, color, box-shadow, filter;
+  transition-duration: 0.3s;
+  border: 1px solid transparent;
+  letter-spacing: 2px;
+  min-width: 300px;
+  text-transform: capitalize;
+  white-space: normal;
+  font-weight: 700;
+  text-align: center;
+  padding: 17px 48px;
+  color: #fff;
+  background-color: rgba(0, 0, 0);
+  height: 63px;
+}
+
+.button:hover {
+  transform: scale(1.04);
+}
+
 /* Your existing CSS styles... */
 
 .footer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 50px;
+  margin-top: 25px;
 }
 .image-container {
   display: flex;
@@ -85,20 +139,131 @@ body {
   margin-bottom: 20px;
   background-color: #f5f5f4;
   border-radius: 16px;
-  padding-right: 60px;
-  padding-left: 60px;
-  padding-top: 20px;
+  padding-right: 75px;
+  padding-left: 75px;
+  padding-top: 10px;
   padding-bottom: 10px;
   cursor: pointer;
+  position: relative;
+  width: 290px;
+  font-weight: 700; /* Remove underline */
+  color: black;
 }
 
 .image-container img {
   width: 75px;
   height: 75px;
+  border-radius: 15px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .text {
-  margin-left: 20px;
-  width: 200px;
+  position: absolute; /* Add this line */
+  left: 170px; /* Adjust this value to control the distance from the image */
+  top: 50%; /* Vertically center the text */
+  transform: translateY(-50%); /* Adjust for vertical centering */
 }
-/* Your existing CSS styles... */
+
+.phone-number p {
+  margin-top: 50px;
+  margin-left: 22px;
+  text-decoration: none;
+  letter-spacing: 1.8px;
+}
+
+.email {
+  margin-right: 83px;
+}
+
+@media (min-width: 1024px) {
+  .wrapper {
+    width: 95%; /* Adjust the width as needed */
+  }
+  .image-container {
+    width: 350px;
+  }
+}
+
+/* Styles for mobile phones */
+@media (max-width: 767px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .background-image {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200px; /* Set the desired height for the background image */
+  }
+
+  .wrapper {
+    width: 100%;
+    /* Adjust the width as needed */
+  }
+  .image-container {
+    display: flex; /* Add this line to make the image and content flex items */
+    align-items: center; /* Vertically center align items */
+    width: 100%;
+    padding: 10px 30px; /* Adjust padding as needed */
+  }
+  .image-container img {
+    width: 75px;
+    height: 75px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin-left: 20px;
+  }
+  .text {
+    left: 150px;
+    font-size: 14px;
+  }
+  .phone-number p {
+    margin-top: 50px;
+    margin-left: 25px;
+    text-decoration: none;
+  }
+}
+
+@media (max-width: 320px) {
+  .text {
+    font-size: 9px; /* Adjust the font size for iPhone SE */
+  }
+}
+
+/* iPhone 13, 13 Pro, 13 Pro Max */
+@media (min-width: 375px) and (max-width: 428px) {
+  .text {
+    font-size: 13.4px; /* Adjust the font size for iPhone 13 series */
+  }
+}
+
+.button_2 {
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  border-radius: 500px;
+  transition-property: background-color, border-color, color, box-shadow, filter;
+  transition-duration: 0.3s;
+  border: 1px solid transparent;
+  letter-spacing: 2px;
+  min-width: 160px;
+  text-transform: uppercase;
+  white-space: normal;
+  font-weight: 700;
+  text-align: center;
+  padding: 16px 14px 18px;
+  color: #616467;
+  box-shadow: inset 0 0 0 2px #222;
+  background-color: transparent;
+  height: 48px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.button_2:hover {
+  color: #fff;
+  background-color: #222;
+}

@@ -44,6 +44,7 @@ function UserProfile() {
           links={userCard.links}
           email={userCard.email}
           phoneNumber={userCard.phoneNumber}
+          color={userCard.profileColor}
         />
       )}
     </div>

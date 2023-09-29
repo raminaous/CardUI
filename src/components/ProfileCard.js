@@ -6,6 +6,7 @@ import { AiFillCheckCircle, AiOutlineMobile } from "react-icons/ai";
 import "@fortawesome/fontawesome-free/css/all.css";
 import phoneicon from "../images/contact-iphone.png";
 import emailicon from "../images/Mail.svg.png";
+import styled from "styled-components";
 
 function ProfileCard({
   name,
@@ -17,6 +18,7 @@ function ProfileCard({
   phoneNumber,
   email,
   address,
+  color,
 }) {
   const imageBase64 = profileImage;
 
@@ -40,6 +42,76 @@ function ProfileCard({
     URL.revokeObjectURL(url);
   };
 
+  const AddressInfoColumn = styled.div`
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      height: 20vh; 
+      p{
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+    `
+
+  const SaveButton = styled.button`
+   background-color: ${props => "#"+props.color || 'black'}; 
+      margin-top: 10px;
+      margin-bottom: 10px;
+      color: white;
+      padding: 20px;
+      padding-left: 50px;
+      padding-right: 50px;
+      border: none;
+      border-radius: 500px;
+      cursor: pointer;
+      font-size: 20px; /* Adjust font size as needed */
+      font-weight: bold;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+
+      &:hover {
+        transform: scale(1.05); /* Add a slight scale effect on hover */
+      }
+
+      &:disabled {
+        background-color: #888; /* Dark gray for disabled state */
+        cursor: not-allowed;
+      }
+    `;
+
+  const LinkCard = styled.a`
+  text-decoration: none;
+  color: black;
+  width: 100%;
+  margin: 10px;
+  padding: 20px;
+  background-color: #f5f5f4;
+  display: flex;
+  flex-direction: row;
+  text-align: start;
+  align-items: center;
+  justify-content: start;
+  transition: transform 0.2s ease; /* Add a smooth transition for the transform property */
+
+
+
+  &:hover {
+    transform: scale(1.05); /* Add a slight scale effect on hover */
+  }
+
+  img {
+  margin-left: 5vw;
+  height: 10vh; /* Set a fixed height for the images */
+  object-fit: fill; /* Use 'cover' for the object-fit property */
+  border-radius: 10px; /* Optionally, you can keep the border-radius */
+}
+
+
+  h3, h4 {
+    margin: 10px;
+  }
+`;
+
+
   return (
     <div className="container">
       <div className="wrapper">
@@ -59,72 +131,66 @@ function ProfileCard({
             />
           </div>
 
-          <h2>
-            {name}
-            <AiFillCheckCircle className="icon" />
-          </h2>
 
-          <p>🏢 {company}</p>
-          <p>📍 {address}</p>
 
-          {bio !== "" ? <span>{bio}</span> : <div></div>}
-          <br />
-          <button className="button" onClick={handleDownloadContact}>
-            Save Contact <AiOutlineMobile color="white" className="icon" />
-          </button>
+          <AddressInfoColumn>
+            <h2>
+              {name}
+              <AiFillCheckCircle className="icon" />
+            </h2>
+
+            <p>{company}</p>
+
+            {bio !== "" ? <p>{bio}</p> : <div></div>}
+
+
+
+          </AddressInfoColumn>
+
+          <SaveButton onClick={handleDownloadContact} color={color}>
+            Save Contact
+          </SaveButton>
+
+
+
         </div>
         <div className="footer">
-          {phoneNumber && (
-            <a
-              href={`tel:${phoneNumber}`}
-              className="image-container"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+
+          {
+
+            phoneNumber &&
+            <LinkCard href={`tel:${phoneNumber}`}>
               <img src={phoneicon} alt={`Image Call`} />
-              <div className="text">
-                <p>For inquiries, give us a call.</p>
+              <div>
+                <h3>Contact us anytime.</h3>
+                <h4>{phoneNumber}</h4>
               </div>
-              <div className="phone-number">
-                <br />
-                <p>{phoneNumber}</p>
-              </div>
-            </a>
-          )}
+            </LinkCard>
 
-          {email && (
-            <a
-              href={`mailto:${email}`}
-              className="image-container"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+          }
+          {
+            email &&
+            <LinkCard href={`mailto:${email}`}>
               <img src={emailicon} alt={`Image Call`} />
-              <div className="text">
-                <p>For business inquiries, email us.</p>
-                <div className="email">
-                  <br />
-                  <p>{email}</p>
-                </div>
+              <div>
+                <h3>Send us an Email!</h3>
+                <h4>{email}</h4>
               </div>
-            </a>
-          )}
+            </LinkCard>
+          }
 
-          {links &&
-            links.map((link, index) => (
-              <a
-                href={link.link}
-                className="image-container"
-                target="_blank"
-                rel="noopener noreferrer"
-                key={index}
-              >
-                <img src={link.imageUrl} alt={`Image ${index}`} />
-                <div className="text">
-                  <p>{link.bio}</p>
+          {
+            links && links.map((link) => (
+              <LinkCard href={link.link}>
+                <img src={link.imageUrl} alt={`Image Call`} />
+                <div>
+                  <h4>{link.bio}</h4>
                 </div>
-              </a>
-            ))}
+              </LinkCard>
+            ))
+          }
+
+
         </div>
         <button className="button_2">Create Your Own Card</button>
       </div>
